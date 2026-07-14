@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Doraseck - Consultoría Profesional</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Corporate Nav */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .nav-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .nav-items {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-items a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .nav-items a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+        
+        /* Hero Professional */
+        .hero-section {
+            min-height: 85vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            color: white;
+            padding: 140px 5% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 80px;
+            opacity: 0.3;
+        }
+        
+        .hero-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero-text .highlight {
+            color: var(--accent);
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta {
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Stats Cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-desc {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Services Professional */
+        .services-section {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+        
+        .section-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-head h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .section-head p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .services-layout {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-box {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-left-color: var(--accent);
+        }
+        
+        .service-box .icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .service-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Integration */
+        .integration {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .integration-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--light), white);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .integration-box h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .integration-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .integration-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        /* Contact */
+        .contact-section {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+        
+        .contact-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+        
+        .contact-details h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+        
+        .detail-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+        
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .footer-col p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .footer-list {
+            list-style: none;
+        }
+        
+        .footer-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-list a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-list a:hover {
+            opacity: 1;
+        }
+        
+        .footer-base {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-wrapper, .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .stats-row, .integration-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="brand">SP DORASECK</div>
+            <ul class="nav-items">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#integracion">Integración</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="inicio">
+        <div class="hero-wrapper">
+            <div class="hero-text">
+                <h1>
+                    Consultoría <span class="highlight">Profesional</span> de Excelencia
+                </h1>
+                <p>
+                    Soluciones integrales en administración, contabilidad y gestión legal. 
+                    Transformamos la gestión empresarial con servicios especializados.
+                </p>
+                <div class="cta-group">
+                    <a href="#contacto" class="btn-cta btn-primary">Solicitar Consulta</a>
+                    <a href="#servicios" class="btn-cta btn-outline">Ver Servicios</a>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <span class="stat-value">100+</span>
+                        <span class="stat-desc">Clientes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">4+</span>
+                        <span class="stat-desc">Años</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">98%</span>
+                        <span class="stat-desc">Satisfacción</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="servicios">
+        <div class="section-head">
+            <h2>Nuestros Servicios</h2>
+            <p>Soluciones profesionales adaptadas a las necesidades de tu empresa</p>
+        </div>
+        <div class="services-layout">
+            <div class="service-box">
+                <span class="icon">📊</span>
+                <h3>Consultoría Administrativa</h3>
+                <p>Optimización de procesos empresariales, planeación estratégica y desarrollo organizacional.</p>
+            </div>
+            <div class="service-box">
+                <span class="icon">💼</span>
+                <h3>Contabilidad y Auditoría</h3>
+                <p>Servicios contables completos, auditorías financieras y gestión fiscal especializada.</p>
+            </div>
+            <div class="service-box">
+                <span class="icon">⚖️</span>
+                <h3>Gestión Legal</h3>
+                <p>Apoyo en trámites empresariales, constitución de sociedades y cumplimiento normativo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="integration" id="integracion">
+        <div class="integration-box">
+            <h2>Integración con Anahuac</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+                Trabajamos en colaboración con Anahuac para ofrecer servicios financieros y administrativos integrales.
+            </p>
+            <div class="integration-grid">
+                <div class="integration-item">
+                    <h4>🤝 Área Ejecutiva</h4>
+                    <p>Coordinación de servicios y atención personalizada</p>
+                </div>
+                <div class="integration-item">
+                    <h4>⚙️ Operaciones</h4>
+                    <p>Ejecución eficiente de procesos administrativos</p>
+                </div>
+                <div class="integration-item">
+                    <h4>💼 Contabilidad</h4>
+                    <p>Gestión contable y fiscal especializada</p>
+                </div>
+                <div class="integration-item">
+                    <h4>📊 Dirección</h4>
+                    <p>Estrategia y supervisión de calidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contacto">
+        <div class="contact-layout">
+            <div class="contact-details">
+                <h2>Contáctanos</h2>
+                <div class="detail-row">
+                    <div class="detail-icon">📍</div>
+                    <div>
+                        <h4>Dirección</h4>
+                        <p>Calle Guanabana 242, Oficina B<br>Nueva Santa María, Azcapotzalco<br>CDMX, CP 02800</p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>contacto@spdoraseck.mx<br>servicios@spdoraseck.mx</p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">📞</div>
+                    <div>
+                        <h4>Teléfono</h4>
+                        <p>+52 (55) 1234-5678<br>Lunes a Viernes: 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <h3>Agenda una Consulta</h3>
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Empresa</label>
+                        <input type="text">
+                    </div>
+                    <div class="input-group">
+                        <label>Mensaje</label>
+                        <textarea required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>SP Doraseck</h4>
+                <p>Servicios profesionales de excelencia desde 2021. Transformamos la gestión empresarial con soluciones especializadas.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul class="footer-list">
+                    <li><a href="#">Consultoría</a></li>
+                    <li><a href="#">Contabilidad</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul class="footer-list">
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Equipo</a></li>
+                    <li><a href="#">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul class="footer-list">
+                    <li><a href="#">Privacidad</a></li>
+                    <li><a href="#">Términos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <p>&copy; 2025 S.P. DORASECK. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por contactarnos! Nos pondremos en contacto pronto.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
